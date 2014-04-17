@@ -1,21 +1,21 @@
-var Game = function (canvas) {
-	var self = this;
+function Game(canvas) {
+	var self = this
 
-	this.context - canvas.getContext("2d");
-	this.width = canvas.width;
+	this.context = canvas.getContext("2d")
+	this.width = canvas.width
 	this.height = canvas.height
 
 	this.keyPressed = {}
 
-	$(canvas).on('keydown keyup', function(e){
+	$(canvas).on('keydown keyup', function(e) {
 		
 		//convert key code to key name
 
 		var keyName = Game.keys[e.which]
 
 		if (keyName) {
-			self.keyPressed[keyName] = e.type === "keydown";
-			e.preventDefault();
+			self.keyPressed[keyName] = e.type === "keydown"
+			e.preventDefault()
 		}
 	})
 }
@@ -31,13 +31,12 @@ Game.keys = {
 Game.prototype.start = function () {
 	var self = this,
 				fps = 60,
-				interval = 1000 / fps; //ms per frame
+				interval = 1000 / fps //ms per frame
 
 	setInterval(function() {
-
-		self.update();
-		self.draw();
-	}, interval)
+		self.update()
+		self.draw()
+	}, interval )
 }
 
 Game.prototype.update = function () {
@@ -48,7 +47,8 @@ Game.prototype.update = function () {
 
 
 Game.prototype.draw = function () {
-	var self = this;
+	var self = this
+
 	this.entities.forEach(function(entity) {
 		if (entity.draw) entity.draw(self.context)
 	})
