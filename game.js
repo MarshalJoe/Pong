@@ -29,5 +29,12 @@ Game.keys = {
 }
 
 Game.prototype.start = function () {
-	
+	setInterval(function() {
+		var self = this,
+				fps = 60,
+				interval = 1000 / fps; //ms per frame
+
+		self.update();
+		self.draw();
+	}, interval)
 }
